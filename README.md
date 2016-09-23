@@ -1,6 +1,9 @@
 # linguee
 Bilingual word translation straight from Linguee website
 
+## Installation
+`npm install linguee`
+
 ## Warning
 
 As Linguee does not provide an API we need to request the translation page and parse it. Obviously, if Linguee changes it's DOM, probably this will break and also need changes. Proceed with caution.
