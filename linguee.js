@@ -3,7 +3,7 @@ var cheerio = require('cheerio');
 
 module.exports = {
 	translate : function (received, opts, cb) {
-    request('http://www.linguee.com.br/' + from[opts.from].to[opts.to] + '/search?source=auto&query=' + received + '&ajax=1', function (error, response, body) {
+    request('http://www.linguee.com.br/' + lang[opts.from] + '-' + lang[opts.to] + '/search?source=auto&query=' + received + '&ajax=1', function (error, response, body) {
       if (!error && response.statusCode == 200) {
        var $ = cheerio.load(body);
 
@@ -32,17 +32,18 @@ module.exports = {
       // get the audios
 
        var audios = $('.exact').find('.lemma_desc').map(function () { return JSON.parse($(this)
-      .find('.audio')
-      .attr('onclick')
-      .replace('playSound(this,', '[')
-      .replace(');', ']'));
+        .find('.audio')
+        .attr('onclick')
+        .replace('playSound(this,', '[')
+        .replace(');', ']'));
        }).get();
 
+       // prepare the object to be send
 
       var resp = {
-      word: received,
-      audio: (typeof audios[0] === 'undefined') ? null : 'http://www.linguee.com.br/mp3/' + audios[0],
-      pos: translation
+        word: received,
+        audio: (typeof audios[0] === 'undefined') ? null : 'http://www.linguee.com.br/mp3/' + audios[0],
+        pos: translation
        }
 
       cb(resp);
@@ -52,22 +53,30 @@ module.exports = {
 	}
 }
 
-var from = {
-	'por' : { to : {
-		ita : 'portugues-italiano',
-		eng: 'portugues-ingles' }},
-	'eng' : { to : {
-		por : 'english-portuguese',
-		ita: 'english-italian' }}
+var lang = {
+  'eng' : 'english',
+  'ger' : 'german',
+  'fra' : 'french',
+  'spa' : 'spanish',
+  'chi' : 'chinese',
+  'rus' : 'russian',
+  'jpn' : 'japanese',
+  'por' : 'portuguese',
+  'ita' : 'italian',
+  'dut' : 'dutch',
+  'pol' : 'polish',
+  'swe' : 'swedish',
+  'dan' : 'danish',
+  'fin' : 'finnish',
+  'gre' : 'greek',
+  'cze' : 'czech',
+  'rum' : 'romanian',
+  'hun' : 'hungarian',
+  'slo' : 'slovak',
+  'bul' : 'bulgarian',
+  'slv' : 'slovene',
+  'lit' : 'lithuanian',
+  'lav' : 'latvian',
+  'est' : 'estonian',
+  'mlt' : 'maltese'
 }
-
-
-/*
-objeto final
-wordpor
-audio
-pos
-  type
-  text
-*/
-

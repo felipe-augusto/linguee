@@ -1,13 +1,23 @@
 {
   "name": "linguee",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Bilingual word translation straight from Linguee website",
   "main": "linguee.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fesnt/linguee.git"
+  },
+  "keywords": [
+    "linguee",
+    "translate",
+    "translator",
+    "translation"
+  ],
+  "author": "Felipe Santos <fesntmail@gmail.com> (http://felipecoder.com)",
+  "license": "MIT",
   "dependencies": {
     "cheerio": "^0.22.0",
     "request": "^2.75.0"
