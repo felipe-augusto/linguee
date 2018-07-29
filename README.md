@@ -1,7 +1,9 @@
 # linguee
+
 Bilingual word translation straight from Linguee website
 
 ## Installation
+
 `npm install linguee`
 
 ## Warning
@@ -17,9 +19,9 @@ var linguee = require('linguee');
 
 // translate money from english to portuguese
 
-linguee.translate('money', { from : 'eng', to: 'por'}, function (resp) {
-	console.log(resp);
-	/*
+linguee.translate('money', { from: 'eng', to: 'por' }, function(resp) {
+  console.log(resp);
+  /*
 	OUTPUT	
 	{  
 	   word:'pretty',
@@ -45,42 +47,41 @@ linguee.translate('money', { from : 'eng', to: 'por'}, function (resp) {
 	   }
 	}
 	*/
-})
+});
 ```
 
 ## Supported Languages ISO 639-2/B codes
 
-| Language | Code |
-| :------: | :--: |
-| eng | English |
-| ger | German |
-| fra | French |
-| spa | Spanish |
-| chi | Chinese |
-| rus | Russian |
-| jpn | Japanese |
-| por | Portuguese |
-| ita | Italian |
-| dut | Dutch |
-| pol | Polish |
-| swe | Swedish |
-| dan | Danish |
-| fin | Finnish |
-| gre | Greek |
-| cze | Czech |
-| rum | Romanian |
-| hun | Hungarian |
-| slo | Slovak |
-| bul | Bulgarian |
-| slv | Slovene |
-| lit | Lithuanian |
-| lav | Latvian |
-| est | Estonian |
-| mlt | Maltese |
+| Language |    Code    |
+| :------: | :--------: |
+|   eng    |  English   |
+|   ger    |   German   |
+|   fra    |   French   |
+|   spa    |  Spanish   |
+|   chi    |  Chinese   |
+|   rus    |  Russian   |
+|   jpn    |  Japanese  |
+|   por    | Portuguese |
+|   ita    |  Italian   |
+|   dut    |   Dutch    |
+|   pol    |   Polish   |
+|   swe    |  Swedish   |
+|   dan    |   Danish   |
+|   fin    |  Finnish   |
+|   gre    |   Greek    |
+|   cze    |   Czech    |
+|   rum    |  Romanian  |
+|   hun    | Hungarian  |
+|   slo    |   Slovak   |
+|   bul    | Bulgarian  |
+|   slv    |  Slovene   |
+|   lit    | Lithuanian |
+|   lav    |  Latvian   |
+|   est    |  Estonian  |
+|   mlt    |  Maltese   |
 
 ## License
 
 MIT
 
 Linguee Terms and Conditions: http://www.linguee.com/english-portuguese/page/termsAndConditions.php
-
