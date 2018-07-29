@@ -1,6 +1,11 @@
 module.exports = {
   domain: 'http://www.linguee.com',
   placeholderUrl: '/{from}-{to}/search/search?source=auto&query={query}&ajax=1',
+  queryParameters: {
+    source: 'auto',
+    ajax: 1,
+    query: ''
+  },
   langs: {
     eng: 'english',
     ger: 'german',
