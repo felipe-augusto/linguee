@@ -1,31 +1,32 @@
-var request = require('request');
-var cheerio = require('cheerio');
+const request = require('request');
+const cheerio = require('cheerio');
+const config = require('./config');
 
 module.exports = {
   translate: function(received, opts, cb) {
     request(
       'http://www.linguee.com.br/' +
-        lang[opts.from] +
+        config.langs[opts.from] +
         '-' +
-        lang[opts.to] +
+        config.langs[opts.to] +
         '/search?source=auto&query=' +
         received +
         '&ajax=1',
       function(error, response, body) {
         if (!error && response.statusCode == 200) {
-          var $ = cheerio.load(body);
+          const $ = cheerio.load(body);
 
           // get translations
 
-          var translation = {};
+          const translation = {};
 
-          var pos = $('.exact')
+          const pos = $('.exact')
             .find('.translation_desc')
             .map(function() {
-              var trans = $(this).find('.tag_trans');
-              var text = trans.find('.dictLink').text();
-              var type = trans.find('.tag_type').text();
-              var obj = {};
+              const trans = $(this).find('.tag_trans');
+              const text = trans.find('.dictLink').text();
+              const type = trans.find('.tag_type').text();
+              const obj = {};
               // obj[type] = text;
               try {
                 translation[type].push(text);
@@ -41,7 +42,7 @@ module.exports = {
 
           // get the audios
 
-          var audios = $('.exact')
+          const audios = $('.exact')
             .find('.lemma_desc')
             .map(function() {
               return JSON.parse(
@@ -56,7 +57,7 @@ module.exports = {
 
           // prepare the object to be send
 
-          var resp = {
+          const resp = {
             word: received,
             audio:
               typeof audios[0] === 'undefined'
@@ -70,32 +71,4 @@ module.exports = {
       }
     );
   }
-};
-
-var lang = {
-  eng: 'english',
-  ger: 'german',
-  fra: 'french',
-  spa: 'spanish',
-  chi: 'chinese',
-  rus: 'russian',
-  jpn: 'japanese',
-  por: 'portuguese',
-  ita: 'italian',
-  dut: 'dutch',
-  pol: 'polish',
-  swe: 'swedish',
-  dan: 'danish',
-  fin: 'finnish',
-  gre: 'greek',
-  cze: 'czech',
-  rum: 'romanian',
-  hun: 'hungarian',
-  slo: 'slovak',
-  bul: 'bulgarian',
-  slv: 'slovene',
-  lit: 'lithuanian',
-  lav: 'latvian',
-  est: 'estonian',
-  mlt: 'maltese'
 };
