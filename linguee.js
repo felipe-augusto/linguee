@@ -1,6 +1,9 @@
 const request = require('request');
-const buildUrl = require('./src/urlBuilder');
-const transformResponse = require('./src/responseTransformer');
+const querystring = require('querystring');
+const cheerio = require('cheerio');
+const config = require('./config');
+const transformResponse = require('./src/responseTransformer')(config, cheerio);
+const buildUrl = require('./src/urlBuilder')(config, querystring);
 
 module.exports = {
   translate: function(query, opts, cb) {
