@@ -25,7 +25,7 @@ linguee.translate('money', { from: 'eng', to: 'por' }, function(resp) {
 	OUTPUT	
 	{  
 	   word:'pretty',
-	   audio:'http://www.linguee.com.br/mp3/EN_US/2f/2f0e7ef29748dbf6dacf8381c4cc921c-300',
+	   audio:'http://www.linguee.com/mp3/EN_US/2f/2f0e7ef29748dbf6dacf8381c4cc921c-300',
 	   pos:{  
 	      adj:[  
 	         'bonito',
