@@ -1,29 +1,30 @@
-const querystring = require('querystring');
-const config = require('../config');
+const urlBuilder = function(config, querystring) {
+  return function(from, to, query) {
+    if (!(from in config.langs)) {
+      throw Error(
+        `"from" parameter (value: "${from}") is not valid. Valid values are: ${Object.keys(
+          config.langs
+        ).join(', ')}`
+      );
+    }
+    if (!(to in config.langs)) {
+      throw Error(
+        `"to" parameter (value: "${to}") is not valid. Valid values are: ${Object.keys(
+          config.langs
+        ).join(', ')}`
+      );
+    }
+    const queryParameters = {
+      ...config.queryParameters,
+      query: query
+    };
 
-module.exports = function(from, to, query) {
-  if (!(from in config.langs)) {
-    throw Error(
-      `"from" parameter (value: "${from}") is not valid. Valid values are: ${Object.keys(
-        config.langs
-      ).join(', ')}`
-    );
-  }
-  if (!(to in config.langs)) {
-    throw Error(
-      `"to" parameter (value: "${to}") is not valid. Valid values are: ${Object.keys(
-        config.langs
-      ).join(', ')}`
-    );
-  }
-  const queryParameters = {
-    ...config.queryParameters,
-    query: query
+    const url = `${config.domain}${config.placeholderUrl
+      .replace('{from}', config.langs[from])
+      .replace('{to}', config.langs[to])}`;
+
+    return `${url}?${querystring.stringify(queryParameters)}`;
   };
-
-  const url = `${config.domain}${config.placeholderUrl
-    .replace('{from}', config.langs[from])
-    .replace('{to}', config.langs[to])}`;
-
-  return `${url}?${querystring.stringify(queryParameters)}`;
 };
+
+module.exports = urlBuilder;
