@@ -2,7 +2,7 @@
   "name": "linguee",
   "version": "0.0.1",
   "description": "Bilingual word translation straight from Linguee website",
-  "main": "linguee.js",
+  "main": "index.js",
   "scripts": {
     "test": "faucet tests"
   },
