@@ -1,3 +1,5 @@
+const NotFoundException = require('./errors/notFoundException');
+
 const responseTransformer = function(
   wordTransformer,
   examplesTransformer,
@@ -8,6 +10,12 @@ const responseTransformer = function(
   return {
     transform: function(responseBody, query) {
       const $ = cheerio.load(responseBody);
+
+      $notFoundContainer = $('h1.noresults');
+
+      if ($notFoundContainer.length > 0) {
+        throw new NotFoundException(query);
+      }
 
       const $container = $('.exact');
 
