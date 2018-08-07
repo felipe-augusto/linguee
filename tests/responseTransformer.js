@@ -1,25 +1,83 @@
 const test = require('tape');
 const cheerio = require('cheerio');
 const fs = require('fs');
-const htmlDocument = fs.readFileSync(`${__dirname}/fixtures/response.html`);
 const config = {
   domain: 'http://somedomain.com'
 };
-const transformResponse = require('../src/responseTransformer')(
+const urlBuilder = {
+  buildAudioUrl: function(path) {
+    return `http://somedomain.com/mp3/${path}`;
+  }
+};
+const translationsTransformer = require('../src/responseTransformer/word/translations')(
+  cheerio,
+  urlBuilder
+);
+const lessCommonTranslationsTransformer = require('../src/responseTransformer/word/lessCommonTranslations')(
+  cheerio
+);
+const wordTransformer = require('../src/responseTransformer/word')(
+  urlBuilder,
+  translationsTransformer,
+  lessCommonTranslationsTransformer
+);
+const examplesTransformer = require('../src/responseTransformer/examples')(
+  cheerio,
+  urlBuilder
+);
+
+const responseTransformer = require('../src/responseTransformer')(
+  wordTransformer,
+  examplesTransformer,
   config,
+  urlBuilder,
   cheerio
 );
 
 test('it returns a translation object from an html response', function(assert) {
-  const translation = transformResponse(htmlDocument, 'dictionnaire');
-  assert.deepEqual(translation, {
-    word: 'dictionnaire',
-    audio:
-      'http://somedomain.com/mp3/FR/24/2419c7c48458b67d9ebc669f675a774e-106',
-    pos: {
-      m: ['dicionário']
+  const examples = [
+    {
+      query: 'buy',
+      dir: 'buy-eng-rus'
+    },
+    {
+      query: 'dictionnaire',
+      dir: 'dictionnaire-fra-por'
+    },
+    {
+      query: '历',
+      dir: 'history-chi-eng'
     }
-  });
+  ];
 
+  const getInputPath = function(dir) {
+    return `${__dirname}/examples/${dir}/input.html`;
+  };
+  const getExpectedPath = function(dir) {
+    return `${__dirname}/examples/${dir}/expected.js`;
+  };
+  for (let example of examples) {
+    const input = fs.readFileSync(getInputPath(example.dir));
+    const expected = require(getExpectedPath(example.dir));
+
+    assert.deepEquals(
+      responseTransformer.transform(input, example.query),
+      expected
+    );
+  }
   assert.end();
+});
+
+test('it throws a not found exception if the word was not found', function(assert) {
+  const input = fs.readFileSync(`${__dirname}/examples/404.html`);
+  try {
+    const output = responseTransformer.transform(input, 'anriuste');
+  } catch (error) {
+    assert.equals(error.type, 'Not Found');
+    assert.end();
+
+    return;
+  }
+
+  assert.fail();
 });
