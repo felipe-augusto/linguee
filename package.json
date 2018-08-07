@@ -20,6 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "cheerio": "^0.22.0",
+    "iconv-lite": "^0.4.23",
     "request": "^2.75.0"
   },
   "devDependencies": {
