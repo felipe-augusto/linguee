@@ -1,6 +1,7 @@
 const test = require('tape');
 const cheerio = require('cheerio');
 const fs = require('fs');
+const sanitizer = require('../utils/stringSanitizer')();
 const config = {};
 const urlBuilder = {
   buildAudioUrl: function(path) {
@@ -9,19 +10,23 @@ const urlBuilder = {
 };
 const translationsTransformer = require('../src/responseTransformer/word/translations')(
   cheerio,
-  urlBuilder
+  urlBuilder,
+  sanitizer
 );
 const lessCommonTranslationsTransformer = require('../src/responseTransformer/word/lessCommonTranslations')(
-  cheerio
+  cheerio,
+  sanitizer
 );
 const wordTransformer = require('../src/responseTransformer/word')(
   urlBuilder,
+  sanitizer,
   translationsTransformer,
   lessCommonTranslationsTransformer
 );
 const examplesTransformer = require('../src/responseTransformer/examples')(
   cheerio,
-  urlBuilder
+  urlBuilder,
+  sanitizer
 );
 
 const responseTransformer = require('../src/responseTransformer')(
@@ -45,6 +50,10 @@ test('it returns a translation object from an html response', function(assert) {
     {
       query: '历',
       dir: 'history-chi-eng'
+    },
+    {
+      query: 'verstehe',
+      dir: 'verstehe-ger-fra'
     }
   ];
 

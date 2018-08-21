@@ -1,4 +1,4 @@
-module.exports = function(cheerio, urlBuilder) {
+module.exports = function(cheerio, urlBuilder, sanitizer) {
   return {
     getExamples: function($examples) {
       const $ = cheerio.load('');
@@ -13,9 +13,32 @@ module.exports = function(cheerio, urlBuilder) {
             return audioPath ? urlBuilder.buildAudioUrl(audioPath) : null;
           };
 
+          const getType = function() {
+            const shortenedType = $from.children('.tag_type').text() || null;
+
+            if (!shortenedType) {
+              return null;
+            }
+
+            const typesDictionary = {
+              v: 'verb',
+              n: 'noun',
+              pl: 'noun, plural',
+              nt: 'noun, neuter',
+              f: 'noun, feminine',
+              m: 'noun, masculine'
+            };
+
+            if (!(shortenedType in typesDictionary)) {
+              return sanitizer.removeNonBreakableSpace(shortenedType);
+            }
+
+            return typesDictionary[shortenedType];
+          };
+
           return {
             content: $from.children('a').text(),
-            type: $from.children('.tag_type').text() || null,
+            type: getType(),
             audio: getAudio()
           };
         };
@@ -25,7 +48,9 @@ module.exports = function(cheerio, urlBuilder) {
           const getTo = function($to) {
             return {
               content: $to.find('a.dictLink').text(),
-              type: $to.find('.tag_type').text()
+              type: sanitizer.removeNonBreakableSpace(
+                $to.find('.tag_type').attr('title')
+              )
             };
           };
 

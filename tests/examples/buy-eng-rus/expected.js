@@ -11,7 +11,7 @@ module.exports = {
         {
           term: 'покупать что-л.',
           audio: null,
-          type: 'v',
+          type: 'verb, imperfective',
           alternatives: [],
           examples: [
             {
@@ -28,54 +28,54 @@ module.exports = {
     {
       from: {
         content: 'intention to buy',
-        type: 'n',
+        type: 'noun',
         audio:
           'http://somedomain.com/mp3/EN_UK/19/1922e463e713687ee48ac6b25a76d4dd-100'
       },
       to: [
         {
           content: 'намерение купить',
-          type: 'nt'
+          type: 'noun, neuter'
         }
       ]
     },
     {
       from: {
         content: 'buy order',
-        type: 'n',
+        type: 'noun',
         audio:
           'http://somedomain.com/mp3/EN_US/1d/1d85f7a778ad5e9d86c63420fddcd6f1-100'
       },
       to: [
         {
           content: 'заказ на покупку',
-          type: 'm'
+          type: 'noun, masculine'
         }
       ]
     },
     {
       from: {
         content: 'right to buy',
-        type: 'n',
+        type: 'noun',
         audio: null
       },
       to: [
         {
           content: 'право покупать',
-          type: 'nt'
+          type: 'noun, neuter'
         }
       ]
     },
     {
       from: {
         content: 'good buy',
-        type: 'n',
+        type: 'noun',
         audio: null
       },
       to: [
         {
           content: 'удачная покупка',
-          type: 'f'
+          type: 'noun, feminine'
         }
       ]
     }

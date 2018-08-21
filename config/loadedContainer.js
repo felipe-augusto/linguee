@@ -10,6 +10,7 @@ container.register(
 
     // internal functions
     { id: 'config', path: './config' },
+    { id: 'sanitizer', path: './utils/stringSanitizer' },
     {
       id: 'linguee',
       path: './src/linguee',
@@ -43,6 +44,7 @@ container.register(
       path: './src/responseTransformer/word',
       dependencies: [
         'urlBuilder',
+        'sanitizer',
         'wordTranslationsTransformer',
         'wordLessCommonTranslationsTransformer'
       ]
@@ -50,17 +52,17 @@ container.register(
     {
       id: 'examplesTransformer',
       path: './src/responseTransformer/examples',
-      dependencies: ['cheerio', 'urlBuilder']
+      dependencies: ['cheerio', 'urlBuilder', 'sanitizer']
     },
     {
       id: 'wordTranslationsTransformer',
       path: './src/responseTransformer/word/translations',
-      dependencies: ['cheerio', 'urlBuilder']
+      dependencies: ['cheerio', 'urlBuilder', 'sanitizer']
     },
     {
       id: 'wordLessCommonTranslationsTransformer',
       path: './src/responseTransformer/word/lessCommonTranslations',
-      dependencies: ['cheerio']
+      dependencies: ['cheerio', 'sanitizer']
     }
   ],
   `${__dirname}/../`

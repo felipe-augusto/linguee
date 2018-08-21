@@ -11,7 +11,7 @@ module.exports = {
           term: 'history',
           audio:
             'http://somedomain.com/mp3/EN_US/3c/3cd15f8f2940aff879df34df4e5c2cd1-101',
-          type: 'n',
+          type: 'noun',
           alternatives: [],
           examples: []
         }
@@ -19,7 +19,7 @@ module.exports = {
       lessCommonTranslations: [
         {
           term: 'calendar',
-          type: 'n',
+          type: 'noun',
           usage: null
         }
       ]
@@ -33,12 +33,12 @@ module.exports = {
       lessCommonTranslations: [
         {
           term: 'all',
-          type: 'adj',
+          type: 'adjective',
           usage: null
         },
         {
           term: 'each',
-          type: 'adj',
+          type: 'adjective',
           usage: null
         }
       ]
@@ -72,47 +72,47 @@ module.exports = {
     {
       from: {
         content: '简历',
-        type: 'n',
+        type: 'noun',
         audio: null
       },
       to: [
         {
           content: 'resume',
-          type: 'n'
+          type: 'noun'
         },
         {
           content: 'CV',
-          type: 'n'
+          type: 'noun'
         },
         {
           content: 'biography',
-          type: 'n'
+          type: 'noun'
         }
       ]
     },
     {
       from: {
         content: '事历',
-        type: 'n',
+        type: 'noun',
         audio: null
       },
       to: [
         {
           content: 'calendar',
-          type: 'n'
+          type: 'noun'
         }
       ]
     },
     {
       from: {
         content: '历史',
-        type: 'pl',
+        type: 'noun, plural',
         audio: null
       },
       to: [
         {
           content: 'story',
-          type: 'pl'
+          type: 'noun, plural'
         }
       ]
     }

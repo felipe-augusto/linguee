@@ -1,5 +1,6 @@
-module.exports = function(cheerio, urlBuilder) {
+module.exports = function(cheerio, urlBuilder, sanitizer) {
   const $ = cheerio.load('');
+
   return {
     getTranslations: function($translationLines) {
       const $mainTranslations = $translationLines.children('.translation');
@@ -12,10 +13,12 @@ module.exports = function(cheerio, urlBuilder) {
         };
 
         const getType = function() {
-          return $translationDescription
+          const type = $translationDescription
             .children('.tag_trans')
             .children('.tag_type')
-            .text();
+            .attr('title');
+
+          return sanitizer.removeNonBreakableSpace(type);
         };
 
         const getAudio = function() {
@@ -27,9 +30,29 @@ module.exports = function(cheerio, urlBuilder) {
 
         const getAlternatives = function() {
           const getAlternative = function($altTag) {
+            const getType = function() {
+              let shortenedType = $altTag.find('.tag_type').text() || null;
+              if (shortenedType) {
+                shortenedType = sanitizer.removeNonBreakableSpace(
+                  shortenedType
+                );
+              }
+
+              const typesDictionary = {
+                v: 'verb',
+                n: 'noun',
+                pl: 'noun, plural',
+                nt: 'noun, neuter',
+                f: 'noun, feminine',
+                m: 'noun, masculine'
+              };
+
+              return typesDictionary[shortenedType];
+            };
+
             return {
               term: $altTag.find('.formLink').text(),
-              type: $altTag.find('.tag_type').text()
+              type: getType()
             };
           };
 

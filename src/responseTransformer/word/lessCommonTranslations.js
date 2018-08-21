@@ -1,4 +1,4 @@
-module.exports = function(cheerio) {
+module.exports = function(cheerio, sanitizer) {
   const $ = cheerio.load('');
   return {
     getTranslations: function($translationGroup) {
@@ -13,7 +13,14 @@ module.exports = function(cheerio) {
           return $description.find('.tag_trans a.dictLink').text();
         };
         const getType = function() {
-          return $description.find('.tag_trans .tag_type').text() || null;
+          const type =
+            $description.find('.tag_trans .tag_type').attr('title') || null;
+
+          if (!type) {
+            return null;
+          }
+
+          return sanitizer.removeNonBreakableSpace(type);
         };
         const getUsage = function() {
           return $description.find('.tag_trans .tag_usage').text() || null;

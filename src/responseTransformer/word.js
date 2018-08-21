@@ -1,5 +1,6 @@
 module.exports = function(
   urlBuilder,
+  sanitizer,
   translationsTransformer,
   lessCommonTranslationsTransformer
 ) {
@@ -20,7 +21,13 @@ module.exports = function(
       };
 
       const getType = function() {
-        return $mainDescription.find('.tag_wordtype').text() || null;
+        const type = $mainDescription.find('.tag_wordtype').text() || null;
+
+        if (!type) {
+          return null;
+        }
+
+        return sanitizer.removeNonBreakableSpace(type);
       };
 
       const getAudio = function() {
