@@ -1,7 +1,6 @@
 const test = require('tape');
 const querystring = require('querystring');
 const config = {
-  domain: 'http://somedomain.com',
   placeholderUrl: '/{from}/{to}/something',
   queryParameters: {
     lorem: 'ipsum',
@@ -44,7 +43,7 @@ test('it throws an error if to parameter is not valid', function(assert) {
 test('it returns a correct url', function(assert) {
   assert.equal(
     urlBuilder.buildUrl('fra', 'por', 'lorem'),
-    'http://somedomain.com/french/portuguese/something?lorem=ipsum&testencode=aeiouy%C3%AF%C3%BC%C3%A9~%C3%AE%C4%99&query=lorem'
+    'https://www.linguee.com/french/portuguese/something?lorem=ipsum&testencode=aeiouy%C3%AF%C3%BC%C3%A9~%C3%AE%C4%99&query=lorem'
   );
   assert.pass();
   assert.end();
@@ -53,7 +52,7 @@ test('it returns a correct url', function(assert) {
 test('it builds audio url', function(assert) {
   assert.equal(
     urlBuilder.buildAudioUrl('EN_US/b9/b9ef165b255673dde47bff07f4390fb1-101'),
-    'http://somedomain.com/mp3/EN_US/b9/b9ef165b255673dde47bff07f4390fb1-101'
+    'https://www.linguee.com/mp3/EN_US/b9/b9ef165b255673dde47bff07f4390fb1-101'
   );
 
   assert.end();

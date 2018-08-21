@@ -1,9 +1,7 @@
 const test = require('tape');
 const cheerio = require('cheerio');
 const fs = require('fs');
-const config = {
-  domain: 'http://somedomain.com'
-};
+const config = {};
 const urlBuilder = {
   buildAudioUrl: function(path) {
     return `http://somedomain.com/mp3/${path}`;

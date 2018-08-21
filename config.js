@@ -1,5 +1,4 @@
 module.exports = {
-  domain: 'http://www.linguee.com',
   placeholderUrl: '/{from}-{to}/search/search',
   queryParameters: {
     source: 'auto',
