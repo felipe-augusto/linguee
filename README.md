@@ -34,14 +34,14 @@ linguee
 "words": [
   {
     "term": "money",
-    "audio": "http://www.linguee.com/mp3/EN_US/97/9726255eec083aa56dc0449a21b33190-101",
+    "audio": "https://www.linguee.com/mp3/EN_US/97/9726255eec083aa56dc0449a21b33190-101",
     "additionalInfo": null,
     "type": "noun",
     "translations": [
       {
         "term": "dinheiro",
-        "audio": "http://www.linguee.com/mp3/PT_BR/79/79de84b440a2419610355782ac900622-106",
-        "type": "m",
+        "audio": "https://www.linguee.com/mp3/PT_BR/79/79de84b440a2419610355782ac900622-106",
+        "type": "noun, masculine",
         "alternatives": [],
         "examples": [
           {
@@ -58,61 +58,61 @@ linguee
     "lessCommonTranslations": [
       {
         "term": "capital",
-        "type": "m",
+        "type": "noun, masculine",
         "usage": null
       },
       {
         "term": "moeda",
-        "type": "f",
+        "type": "noun, feminine",
         "usage": null
       },
       {
         "term": "verba",
-        "type": "f",
+        "type": "noun, feminine",
         "usage": null
       },
       {
         "term": "riqueza",
-        "type": "f",
+        "type": "noun, feminine",
         "usage": null
       },
       {
         "term": "numerário",
-        "type": "m",
+        "type": "noun, masculine",
         "usage": null
       },
       {
         "term": "fortuna",
-        "type": "f",
+        "type": "noun, feminine",
         "usage": null
       }
     ]
   },
   {
     "term": "money",
-    "audio": "http://www.linguee.com/mp3/EN_UK/97/9726255eec083aa56dc0449a21b33190-0",
+    "audio": "https://www.linguee.com/mp3/EN_UK/97/9726255eec083aa56dc0449a21b33190-0",
     "additionalInfo": null,
     "type": "noun as adjective",
     "translations": [],
     "lessCommonTranslations": [
       {
         "term": "monetário",
-        "type": "adj",
+        "type": "adjective, masculine",
         "usage": null
       },
       {
         "term": "financeira",
-        "type": "adj",
+        "type": "adjective, feminine",
         "usage": null
       },
       {
         "term": "monetária",
-        "type": "adj",
+        "type": "adjective, feminine",
         "usage": null
       },
       {
         "term": "cambial",
-        "type": "adj",
+        "type": "adjective, singular, both",
         "usage": null
       }
     ]
@@ -121,40 +121,48 @@ linguee
 "examples": [
   {
     "from": {
-      "content": "save money",
-      "type": "v",
-      "audio": "http://www.linguee.com/mp3/EN_US/87/87a54e4508b4bdadce59ab1dce8f05b6-200"
+      "content": "value for money",
+      "type": "noun",
+      "audio": "https://www.linguee.com/mp3/EN_UK/78/78d0975a374ecdf77205be9b213ee294-0"
     },
     "to": [
       {
-        "content": "economizar",
-        "type": "v"
+        "content": "relação qualidade-preço",
+        "type": "noun, feminine"
+      },
+      {
+        "content": "rentabilidade",
+        "type": "noun, feminine"
       }
     ]
   },
   {
     "from": {
-      "content": "money market",
-      "type": "n",
-      "audio": "http://www.linguee.com/mp3/EN_US/50/50fa9efcf444a86b33ce03fee484cd5c-101"
+      "content": "raise money",
+      "type": "verb",
+      "audio": "https://www.linguee.com/mp3/EN_US/55/55aace5542808e206cd7c48c63fa386a-200"
     },
     "to": [
       {
-        "content": "mercado monetário",
-        "type": "m"
+        "content": "levantar dinheiro",
+        "type": "verb"
       }
     ]
   },
   {
     "from": {
-      "content": "make money",
-      "type": "v",
-      "audio": "http://www.linguee.com/mp3/EN_US/73/734031a6878c5c4e7f26dae9e16f1af8-200"
+      "content": "money supply",
+      "type": "noun",
+      "audio": "https://www.linguee.com/mp3/EN_US/72/72d6c1f1aa121245beb37ff5b58ae4c7-101"
     },
     "to": [
       {
-        "content": "fazer dinheiro",
-        "type": "v"
+        "content": "massa monetária",
+        "type": "noun, feminine"
+      },
+      {
+        "content": "fornecimento de dinheiro",
+        "type": "noun, masculine"
       }
     ]
   }
@@ -205,10 +213,10 @@ Internally, the function calls an `urlBuilder` to build the url, and a `response
 
 The `responseTransformer` itself is built from several functions that are dedicated to each part of the page to parse.
 
-Inversion of control is guaranteed thanks to a very simple homemade dependency injection container.
+Inversion of control is guaranteed thanks to [a very simple dependency injection container](https://www.npmjs.com/package/@einenlum/jic).
 
 ## License
 
 MIT
 
-Linguee Terms and Conditions: http://www.linguee.com/english-portuguese/page/termsAndConditions.php
+Linguee Terms and Conditions: https://www.linguee.com/english-portuguese/page/termsAndConditions.php
