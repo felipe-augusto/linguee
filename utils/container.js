@@ -44,7 +44,7 @@ const container = (function() {
 
     if (registry[id].dependencies.length === 0) {
       registry[id].target = registry[id].internal
-        ? require(registry[id].path)
+        ? require(registry[id].path)()
         : require(registry[id].path);
 
       return registry[id].target;
