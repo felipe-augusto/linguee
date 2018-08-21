@@ -47,6 +47,10 @@ module.exports = function(cheerio, urlBuilder, sanitizer) {
                 m: 'noun, masculine'
               };
 
+              if (!(shortenedType in typesDictionary)) {
+                return shortenedType;
+              }
+
               return typesDictionary[shortenedType];
             };
 
