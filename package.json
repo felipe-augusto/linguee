@@ -2,7 +2,7 @@
   "name": "linguee",
   "version": "0.0.1",
   "description": "Bilingual word translation straight from Linguee website",
-  "main": "linguee.js",
+  "main": "index.js",
   "scripts": {
     "test": "faucet tests"
   },
@@ -19,7 +19,9 @@
   "author": "Felipe Santos <fesntmail@gmail.com> (http://felipecoder.com)",
   "license": "MIT",
   "dependencies": {
+    "@einenlum/jic": "0.0.5",
     "cheerio": "^0.22.0",
+    "iconv-lite": "^0.4.23",
     "request": "^2.75.0"
   },
   "devDependencies": {
