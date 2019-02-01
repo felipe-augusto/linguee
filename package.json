@@ -1,6 +1,6 @@
 {
   "name": "linguee",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bilingual word translation straight from Linguee website",
   "main": "index.js",
   "scripts": {
