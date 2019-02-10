@@ -14,9 +14,9 @@ const linguee = function(
 
       return new Promise(function(resolve, reject) {
         request(url, { encoding: null }, function(error, response, body) {
-          // Linguee encodes the response in ISO-8859-1. We convert it to UTF8
-          const utf8body = iconv.decode(Buffer.from(body), 'ISO-8859-1');
           if (!error && response.statusCode == 200) {
+            // Linguee encodes the response in ISO-8859-1. We convert it to UTF8
+            const utf8body = iconv.decode(Buffer.from(body), 'ISO-8859-1');
             try {
               const resp = responseTransformer.transform(utf8body, query);
               resolve(resp);
